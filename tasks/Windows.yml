@@ -53,6 +53,13 @@
     - az_devops_deployment_group_tags is defined
     - az_devops_deployment_group_tags
 
+- name: Add environment resource tags
+  ansible.builtin.set_fact:
+    resource_agent_install_options: "{{ resource_agent_install_options + ['/EnvironmentTags:' + az_devops_environment_tags] }}"
+  when:
+    - az_devops_environment_tags is defined
+    - az_devops_environment_tags
+
 - name: Add az_devops_proxy_url
   ansible.builtin.set_fact:
     common_install_options: "{{ common_install_options + ['/ProxyUrl:' + az_devops_proxy_url] }}"
